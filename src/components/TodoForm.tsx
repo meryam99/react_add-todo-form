@@ -24,6 +24,14 @@ export const TodoForm: React.FC<Props> = ({ onSubmit }) => {
     setHasUserIdError(false);
   };
 
+  const reset = () => {
+    setTitle('');
+    setUserId(0);
+
+    setHasTitleError(false);
+    setHasUserIdError(false);
+  };
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -41,15 +49,6 @@ export const TodoForm: React.FC<Props> = ({ onSubmit }) => {
       userId,
       user: getUserById(userId),
     });
-  };
-
-  const reset = () => {
-    setTitle('');
-    setUserId(0);
-
-    setHasTitleError(false);
-    setHasUserIdError(false);
-
     reset();
   };
 
