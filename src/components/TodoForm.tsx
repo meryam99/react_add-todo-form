@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import users from '../api/users';
 import classNames from 'classnames';
-import { Todo } from '../entities/Todo';
-import { getUserById } from '../services/user';
-
 type Props = {
-  onSubmit: (todo: Todo) => void;
+  onSubmit: (data: { title: string; userId: number }) => void;
 };
 
 export const TodoForm: React.FC<Props> = ({ onSubmit }) => {
@@ -44,10 +41,8 @@ export const TodoForm: React.FC<Props> = ({ onSubmit }) => {
     }
 
     onSubmit({
-      id: 0,
       title,
       userId,
-      user: getUserById(userId),
     });
     reset();
   };
@@ -82,9 +77,6 @@ export const TodoForm: React.FC<Props> = ({ onSubmit }) => {
         <label htmlFor="user-id">User: </label>
         <select
           data-cy="userSelect"
-          className={classNames('input', {
-            error: hasUserIdError,
-          })}
           required
           value={userId}
           onChange={handleUserIdChange}

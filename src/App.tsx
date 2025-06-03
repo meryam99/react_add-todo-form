@@ -26,10 +26,13 @@ function getNewTodoId(todos: Todo[]) {
 export const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
 
-  const addTodo = ({ id, ...data }: Todo) => {
+  const addTodo = ({ title, userId }: Todo) => {
     const newTodo: Todo = {
       id: getNewTodoId(todos),
-      ...data,
+      title,
+      userId,
+      completed: false,
+      user: getUserById(userId),
     };
 
     setTodos(currentTodos => [...currentTodos, newTodo]);
